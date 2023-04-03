@@ -83,13 +83,19 @@ const Banner = (props: any) => {
             strength={600}
           >
             <Background>
-              <video autoPlay muted>
+              {/* <video autoPlay muted>
                 <source src={ImageBanner} type="video/mp4"/>
-              </video>
-              {/* <img src={ImageBanner} /> */}
-            </Background>
+              </video> */}
+              <img src={ImageBanner} />
+            </Background> 
           </Parallax>
         </div>
+        {
+          bannerText &&
+          <div className="bannerText">
+            
+          </div>  
+        }
       </BannerContainer>
     </>
   )

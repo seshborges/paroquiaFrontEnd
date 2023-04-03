@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const DropdownContainer = styled.div`
@@ -75,15 +76,18 @@ const Item = styled.li`
 `
 
 const Component = (props: any) => {
+  const dropdownItems = props.items
+
   return(
     <DropdownContainer className="dropdownContainer">
       <DropdownContent>
-          <Item>
-            Teste
-          </Item>
-          <Item>
-            Teste
-          </Item>
+          {
+            dropdownItems.map((el: any, i: number) =>
+              <Item key={i}>
+                {el.title}
+              </Item>
+            )
+          }
       </DropdownContent>
     </DropdownContainer>
   )

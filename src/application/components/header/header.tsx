@@ -81,6 +81,7 @@ const HeaderCenter = styled.div`
 
   .headerLogo{
     width: 64px;
+    display: none;
     filter: ${props =>  props.theme.name == 'Light' ? 'invert()' : 'none'};
   }
   
@@ -330,7 +331,7 @@ const Component = (props: any) => {
             <a>
               <div title="Paróquia do Divino Pai Eterno" className="logo">
                 <img className="headerLogo" src={logoParoquial} alt="logo paroquial"/>
-                <span className="betaALERT">B E T A</span>
+                <span className="betaALERT">V 2</span>
               </div>
             </a>
           </HeaderCenter>

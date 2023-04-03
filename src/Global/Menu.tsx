@@ -1,15 +1,17 @@
-export const Dropdown = [
-  {
-    "icon": "",
-    "title": "Capela Tal",
-    "path": ""
-  },
-  {
-    "icon": "",
-    "title": "Pastoral 1",
-    "path": ""
-  }
-]
+export const Dropdown = {
+  dropdown01: [
+    {
+      "icon": "",
+      "title": "Comunidade 01",
+      "path": ""
+    },
+    {
+      "icon": "",
+      "title": "Comunidade 02",
+      "path": ""
+    }
+  ]
+}
 
 export const Menu = [
   {
@@ -21,12 +23,6 @@ export const Menu = [
     "icon": "",
     "title": "Comunidades",
     "path": "",
-    "dropdown": Dropdown[0]
+    "dropdown": Dropdown.dropdown01
   },
-  {
-    "icon": "",
-    "title": "Pastorais",
-    "path": "",
-    "dropdown": Dropdown[1]
-  }
 ]
