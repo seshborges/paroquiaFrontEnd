@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components';
+import Roteamento from './Global/Routes'
 import styled from 'styled-components'
-import { HashRouter } from "react-router-dom";
+
+import { BrowserRouter, MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Testemunhos from './application/pages/testemunhos'
 
 import './Global/Normalize.styles.css'
 import './Global/Global.styles.css'
 
 // Components
 import Header from './application/components/header/header'
-import Rotas from './Global/Routes'
-
 
 const lightTheme = {
   name: 'Light',
@@ -28,25 +30,6 @@ const darkTheme = {
   maxWidth: '1750px',
   padding: '40px', 
 };
-
-const Title01 = styled.div`
-  margin-top: 30px;
-  margin-bottom: 20px;
-  font-size: 32px;
-  font-weight: 800;
-  width: fit-content;
-  position: relative;
-`
-
-const Cards = [
-  {
-    title: "Ave Maria",
-    desc: "Rogai Por Nós",
-    tipo: "Áudio",
-    tamanho: "10 Min",
-    background: "https://cdn.discordapp.com/attachments/1004462680582668341/1090750352976007330/image.png",
-  }
-]
 
 function App() {
   const [isDarkTheme, setDarkTheme] = useState(false)
@@ -85,9 +68,13 @@ function App() {
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <Header toggleTheme={toggleTheme} />
-      <HashRouter>
-        <Rotas/>
-      </HashRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<p>home</p>} />
+          <Route path="/forteste" element={<p>teste</p>} />
+          <Route path="/testemunhos" element={<p>testemunhos</p>} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }
