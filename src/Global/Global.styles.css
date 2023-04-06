@@ -6,6 +6,11 @@
   'opsz' 48
 }
 
+.mainContainer{
+  width: 100%;
+  background: red;
+}
+
 /* main{
   position: relative;
   /* padding-left: 100px;

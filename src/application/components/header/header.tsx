@@ -27,7 +27,7 @@ const HeaderContainer = styled.div`
 
   z-index: 999;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1070px) {
     .pcElement{
       display: none;
     }
@@ -50,7 +50,7 @@ const HeaderContainer = styled.div`
 
   }
 
-  @media screen and (max-width: 1200px){
+  @media screen and (max-width: 1070px){
     .mobileElement{
       display: block;
     }
@@ -65,7 +65,7 @@ const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1070px) {
     padding: 0px 8px !important;
   }
 
@@ -145,7 +145,7 @@ const HeaderMenu = styled.ul`
 
     margin-left: 32px;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1070px) {
     position: fixed;
     right: 0px;
     top: 0px;
@@ -207,7 +207,7 @@ const Menu = styled.li`
     }
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1070px) {
     height: fit-content;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -273,7 +273,7 @@ const HeaderSearch = styled.form`
       color: rgb(${props => props.theme.contrast});
     }
   }
-  @media screen and (max-width: 1200px){
+  @media screen and (max-width: 1070px){
     display: none;
   }
 `

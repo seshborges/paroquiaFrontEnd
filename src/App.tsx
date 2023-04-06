@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components';
-import Roteamento from './Global/Routes'
-import styled from 'styled-components'
-
-import { BrowserRouter, MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-
-import Testemunhos from './application/pages/testemunhos'
+import Roteamento from './Routes'
 
 import './Global/Normalize.styles.css'
 import './Global/Global.styles.css'
@@ -30,6 +25,19 @@ const darkTheme = {
   maxWidth: '1750px',
   padding: '40px', 
 };
+
+// Create Global Style
+
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: rgba(${(props: any) => props.theme.background});
+    color: rgba(${(props: any) => props.theme.contrast});
+  }
+`
+
+// Application
 
 function App() {
   const [isDarkTheme, setDarkTheme] = useState(false)
@@ -67,14 +75,9 @@ function App() {
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <GlobalStyle/>
       <Header toggleTheme={toggleTheme} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<p>home</p>} />
-          <Route path="/forteste" element={<p>teste</p>} />
-          <Route path="/testemunhos" element={<p>testemunhos</p>} />
-        </Routes>
-      </BrowserRouter>
+      <Roteamento/>
     </ThemeProvider>
   )
 }

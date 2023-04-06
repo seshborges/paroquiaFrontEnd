@@ -56,3 +56,7 @@ button{
 	outline: none;
 	cursor: pointer;
 }
+
+.mainContainer{
+	background-color: red !important;
+}
