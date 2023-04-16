@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import * as Main from '../../Global/Main.styles'
 import Card from '../components/card/card'
+import Banner from '../components/banner/banner'
 
 const BannerContainer = styled.div`
   width: 100%;
@@ -28,6 +29,7 @@ const Page = () => {
     <>
       <Main.Container>
         <Main.Content>
+          <Banner type="image" fileSource="https://via.placeholder.com/600x400"/>
           <Card items={createCardTeste}/>
         </Main.Content>
       </Main.Container>

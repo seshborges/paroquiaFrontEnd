@@ -25,11 +25,6 @@ const Banner = (props: any) => {
 
   return(
     <BannerContainer>
-      {
-        <div>
-          {props.children}
-        </div> 
-      }
     </BannerContainer>
   )
 }
