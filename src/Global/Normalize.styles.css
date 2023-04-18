@@ -55,6 +55,8 @@ button{
 	border: none;
 	outline: none;
 	cursor: pointer;
+	font-family: 'Inter', sans-serif;
+	color: inherit
 }
 
 .mainContainer{
