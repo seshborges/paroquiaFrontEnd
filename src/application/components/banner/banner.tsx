@@ -1,30 +1,42 @@
 import styled from "styled-components"
 
-import { Background, Parallax } from 'react-parallax';
+import { Parallax, Background } from 'react-parallax';
 
 const BannerContainer = styled.div`
   width: 100%;
-  height: 73.3vh;
+  height: 50vh;
   position: relative;
-  z-index: -1;
-  color: White;
+  color: white;
+  /* overflow: hidden; */
+
+  img, video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
 `
 
 const Banner = (props: any) => {
-  const bannerText = props.text
-  const backgroundType = props.type
   const fileSource = props.source
-
-  if(!backgroundType){
-    throw new Error(`Defina um tipo ao background: type={'video' ou 'image'}`)
-  }
+  const fileType = props.type
 
   if(!fileSource){
-    throw new Error(`Defina um file source ao background: source={'//'}`)
+    throw new Error(`Defina um file source ao banner: source={'//'}`)
+  }
+
+  if(!fileType){
+    throw new Error(`Defina um tipo ao banner: source={'video' ou 'img'}`)
   }
 
   return(
     <BannerContainer>
+      <Parallax strength={500} style={{ height: '100%', width: '100%' }} ex>
+        <Background className='custom-bg'>
+          <img src={fileSource} alt="" />
+        </Background>
+      </Parallax>
     </BannerContainer>
   )
 }

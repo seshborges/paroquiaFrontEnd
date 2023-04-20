@@ -81,26 +81,26 @@ const createCardTeste = [
 ]
 
 const MainContainer = styled.div`
-  .buttonAdd{
-    button{
-      background-color: rgba(${props => props.theme.contrast}, 0.1);
-      padding: 10px 20px; 
-      font-size: 16px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 1px solid rgba(${props=>props.theme.contrast}, 0.2);
+  
+`
 
-      @media screen and (max-width: 1200px){
-        width: 100%;
-      }
+const ButtonAdd = styled.button`
+  background-color: rgba(${props => props.theme.contrast}, 0.1);
+  padding: 10px 20px 10px 14px; 
+  font-size: 16px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(${props=>props.theme.contrast}, 0.2);
 
-      :hover{
-        border: 1px solid rgba(${props=>props.theme.contrast}, 0.4);
-      }
-    }
+  @media screen and (max-width: 1200px){
+    width: 100%;
+  }
+
+  :hover{
+    border: 1px solid rgba(${props=>props.theme.contrast}, 0.4);
   }
 `
 
@@ -121,8 +121,11 @@ const Page = () => {
       <Main.Container>
         <Main.Content>
           <MainContainer>
-            <div className="buttonAdd">
-              <button><span className="material-symbols-outlined"> add </span> Adicionar</button>
+            <ButtonAdd>
+
+            </ButtonAdd>
+            <div className="cardContainer">
+              <div className="card"></div>
             </div>
           </MainContainer>
         </Main.Content>

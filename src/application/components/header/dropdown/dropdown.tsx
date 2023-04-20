@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const DropdownContainer = styled.div`
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1070px) {
     position: absolute;
     top: 16px;
     width: 170px;
@@ -18,7 +18,7 @@ const DropdownContainer = styled.div`
     padding-top: 8px;
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1070px) {
     position: relative;
     top: 0px;
     width: 100%;
@@ -27,7 +27,7 @@ const DropdownContainer = styled.div`
 `
 
 const DropdownContent = styled.ul`
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1070px) {
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(${props => props.theme.contrast}, 0.2);
@@ -37,7 +37,7 @@ const DropdownContent = styled.ul`
 `
 
 const Item = styled.li`
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1070px) {
     padding: 22px;
     box-sizing: border-box;
     background-color: rgba(${props => props.theme.background});
@@ -63,7 +63,7 @@ const Item = styled.li`
     }
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1070px) {
     background: rgba(${props => props.theme.contrast}, 1);
     color: rgba(${props => props.theme.background}, 1);
     display: flex;
