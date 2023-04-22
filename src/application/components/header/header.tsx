@@ -118,9 +118,9 @@ const HeaderCenter = styled.div`
 const HeaderRight = styled.div`
   justify-content: right;
   flex: 1;
-  @media screen and (max-width: 1300px){
-    gap: 0px;
-  }
+  // @media screen and (max-width: 1300px){
+  //   gap: 0px;
+  // }
   flex: 1;
   justify-content: right;
 `

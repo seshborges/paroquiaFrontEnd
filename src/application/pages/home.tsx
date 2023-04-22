@@ -2,16 +2,18 @@ import styled from 'styled-components'
 
 import Banner from '../components/banner/banner'
 
-const Button = styled.div`
+const MarginElem = styled.div`
   height: 5000px;
   width: 100%;
 `
 
 const Page = () => {
+  const fileSource = `https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg`
+
   return(
     <>
-      <Banner source={"https://trindade.go.gov.br/wp-content/uploads/2019/10/concurso-675x370.png"}/>
-      <Button/>
+      <Banner source={fileSource} type={'img'}/>
+      <MarginElem></MarginElem>
     </>
   )
 }
