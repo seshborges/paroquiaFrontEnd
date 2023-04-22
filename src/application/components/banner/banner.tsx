@@ -4,15 +4,23 @@ import { Parallax, Background } from 'react-parallax';
 
 const BannerContainer = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 55vh;
   position: relative;
   color: white;
-  /* overflow: hidden; */
+  overflow: hidden;
 
   img, video{
-    width: 100%;
+    min-width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .custom-bg{
+    width: 100vw;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
 `
@@ -35,7 +43,15 @@ const Banner = (props: any) => {
     <BannerContainer>
       <Parallax strength={500} style={{ height: '100%', width: '100%' }}>
         <Background className='custom-bg'>
-          <img src={fileSource} alt="" />
+          {
+            fileType == 'video' ?
+              <video muted autoPlay>
+                <source src={fileSource} />
+              </video>
+            :
+              <img src={fileSource} alt=""/>
+          }
+          
         </Background>
       </Parallax>
     </BannerContainer>
