@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import { Parallax, Background } from 'react-parallax';
 
@@ -15,6 +15,12 @@ const BannerContainer = styled.div`
     object-fit: cover;
   }
 
+  .imgADDFilter{
+    img, video{
+      filter: brightness(0.2);
+    }
+  }
+
   .custom-bg{
     width: 100vw;
     height: 55vh;
@@ -28,6 +34,7 @@ const BannerContainer = styled.div`
 const Banner = (props: any) => {
   const fileSource = props.source
   const fileType = props.type
+  const filter = props.filter
 
   if(!fileSource){
     throw new Error(`Defina um file source ao banner: source={'//'}`)
@@ -42,10 +49,10 @@ const Banner = (props: any) => {
   return(
     <BannerContainer>
       <Parallax strength={500} style={{ height: '100%', width: '100%' }}>
-        <Background className='custom-bg'>
+        <Background className={`custom-bg ${filter && 'imgADDFilter'}`}>
           {
             fileType == 'video' ?
-              <video muted autoPlay>
+              <video loop muted autoPlay>
                 <source src={fileSource} />
               </video>
             :

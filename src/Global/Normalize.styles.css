@@ -62,3 +62,9 @@ button{
 .mainContainer{
 	background-color: red !important;
 }
+
+a{
+	color: inherit;
+	font-size: inherit;
+	text-decoration: inherit;
+}

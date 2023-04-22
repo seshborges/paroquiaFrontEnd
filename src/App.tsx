@@ -8,22 +8,25 @@ import './Global/Global.styles.css'
 // Components
 import Header from './application/components/header/header'
 
+const defaultTheme = {
+  tabletSize: '1024px',
+  mobileSize: '768px',
+  padding: '40px',
+  primary: '0, 80, 191', 
+}
+
 const lightTheme = {
   name: 'Light',
   background: '255, 255, 255',
   contrast: '24, 24, 24',
-  main: '0, 80, 191',
-  maxWidth: '1750px',
-  padding: '40px', 
+  default: defaultTheme
 };
 
 const darkTheme = {
   name: 'Dark',
   background: '24, 24, 24',
   contrast: '255, 255, 255',
-  main: '0, 80, 191',
-  maxWidth: '1750px',
-  padding: '40px', 
+  default: defaultTheme
 };
 
 // Create Global Style
@@ -35,6 +38,11 @@ const GlobalStyle = createGlobalStyle`
     background: rgba(${(props: any) => props.theme.background});
     color: rgba(${(props: any) => props.theme.contrast});
   }
+
+  /* *{
+    transition: 0.2s;
+    transition-property: background;
+  } */
 `
 
 // Application

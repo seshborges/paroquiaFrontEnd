@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { css } from "@emotion/css"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from "swiper";
 
@@ -125,14 +124,7 @@ const Card = (props: any) => {
               <SwiperSlide key={i}>
                 <CardContainer key={i}>
                   <CardContent>
-                    <CardUpside className={css`
-                      ::after{
-                        background-image: url(${el.background});
-                        background-position: center;
-                        background-size: 100%;
-                        filter: blur(30px);
-                      }
-                    `}>
+                    <CardUpside>
                       <img src={el.background} />
                     </CardUpside>
                     <CardDownside>

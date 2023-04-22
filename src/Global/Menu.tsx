@@ -1,5 +1,17 @@
 export const Dropdown = {
-  dropdown01: [
+  dropdownParoquia: [
+    {
+      "icon": "",
+      "title": "História",
+      "path": ""
+    },
+    {
+      "icon": "",
+      "title": "Redentoristas",
+      "path": "/testemunhos"
+    }
+  ],
+  dropdownComunidades: [
     {
       "icon": "",
       "title": "Comunidade 01",
@@ -8,7 +20,7 @@ export const Dropdown = {
     {
       "icon": "",
       "title": "Comunidade 02",
-      "path": ""
+      "path": "/testemunhos"
     }
   ]
 }
@@ -17,12 +29,21 @@ export const Menu = [
   {
     "icon": "",
     "title": "Início",
-    "path": ""
+    "path": "/" 
+  },
+  {
+    "icon": "",
+    "title": "A Paróquia",
+    "dropdown": Dropdown.dropdownParoquia
   },
   {
     "icon": "",
     "title": "Comunidades",
-    "path": "",
-    "dropdown": Dropdown.dropdown01
+    "dropdown": Dropdown.dropdownComunidades
   },
+  {
+    "icon": "",
+    "title": "Galeria",
+    "path": "/"
+  }
 ]
