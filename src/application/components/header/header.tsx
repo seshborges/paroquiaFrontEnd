@@ -19,6 +19,7 @@ const HeaderContainer = styled.div`
   top: 0;
   background: rgba(${props =>  props.theme.background}, 1);
   color: rgba(${props =>  props.theme.contrast});
+  /* border-bottom: 1px solid red; */
 
   .displayFlex{
     display: flex;
