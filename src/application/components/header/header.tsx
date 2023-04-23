@@ -215,7 +215,6 @@ const Menu = styled.li`
     }
 
     opacity: 1;
-    /* color: rgba(${props => props.theme.main}); */
     .dropdownContainer{
       visibility: visible;
       opacity: 1;

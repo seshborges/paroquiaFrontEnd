@@ -8,6 +8,7 @@ const BannerContainer = styled.div`
   position: relative;
   color: white;
   overflow: hidden;
+  
 
   img, video{
     min-width: 100%;
@@ -21,12 +22,26 @@ const BannerContainer = styled.div`
     }
   }
 
+  .imgADDGradient{
+    ::after{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: '';
+      display: block;
+      bottom: 0px;
+      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 100%);
+      opacity: 0.8;
+    }
+  }
+
   .custom-bg{
     width: 100vw;
-    height: 55vh;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
 `
@@ -35,6 +50,7 @@ const Banner = (props: any) => {
   const fileSource = props.source
   const fileType = props.type
   const filter = props.filter
+  const gradient = props.gradient
 
   if(!fileSource){
     throw new Error(`Defina um file source ao banner: source={'//'}`)
@@ -49,7 +65,7 @@ const Banner = (props: any) => {
   return(
     <BannerContainer>
       <Parallax 
-        strength={600} 
+        strength={400} 
         style={{ 
           height: '100%', 
           width: '100%',
@@ -69,7 +85,7 @@ const Banner = (props: any) => {
           />
         )}
       >
-        <Background className={`custom-bg ${filter && 'imgADDFilter'}`}>
+        <Background className={`custom-bg ${filter && 'imgADDFilter'} ${gradient && 'imgADDGradient'}`}>
           {
             fileType == 'video' ?
               <video loop muted autoPlay>

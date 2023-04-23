@@ -39,7 +39,7 @@ const Home = () => {
 
   return(
     <>
-      <Banner source={fileSource} type={'video'}/>
+      <Banner source={fileSource} type={'video'} gradient/>
       <Main.Container>
         <Main.Content>
           <Card cards={cards}/>
