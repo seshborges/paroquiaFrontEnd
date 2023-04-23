@@ -6,7 +6,7 @@ const DropdownContainer = styled.div`
     position: absolute;
     top: 16px;
     width: 170px;
-    margin-top: 20px;
+    margin-top: 17px;
     overflow: hidden;
 
     visibility: hidden;

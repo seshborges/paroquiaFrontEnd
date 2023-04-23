@@ -25,7 +25,7 @@ const lightTheme = {
 const darkTheme = {
   name: 'Dark',
   background: '24, 24, 24',
-  contrast: '255, 255, 255',
+  contrast: '220, 220, 220',
   default: defaultTheme
 };
 
@@ -37,6 +37,32 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: rgba(${(props: any) => props.theme.background});
     color: rgba(${(props: any) => props.theme.contrast});
+  }
+
+  .button-styled01{
+    background: rgba(${props => props.theme.contrast});
+    color: rgba(${props => props.theme.background});
+    border: 1px solid transparent;
+    opacity: 1;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+
+    transition: .5s;
+    transition-property: opacity;
+
+    :hover{
+      opacity: 0.7;
+    }
+  }
+
+  .button-styled02{
+    padding: 24px 16px 10px 0px;
+    font-weight: 600;
+
+    :hover{
+      text-decoration: underline;
+    }
   }
 
   /* *{

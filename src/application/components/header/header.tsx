@@ -130,7 +130,7 @@ const HeaderMenu = styled.ul`
   height: 100%;
   font-size: 14px;
   font-weight: 600;
-  gap: 40px;
+  gap: 56px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -198,9 +198,18 @@ const Menu = styled.li`
     background: rgba(${props =>  props.theme.contrast}, 0.3);
     transition: 0.5s;
     transition-property: width;
+    display: none;
+  }
+
+  .menu{
+    opacity: 0.9;
+    white-space: nowrap;
   }
 
   :hover{
+    .menu{
+      opacity: 1;
+    }
     ::after{
       width: 100%;
     }

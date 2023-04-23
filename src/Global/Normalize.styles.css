@@ -68,3 +68,33 @@ a{
 	font-size: inherit;
 	text-decoration: inherit;
 }
+
+/* Setagens padrões */
+
+.displayFlex{
+	display: flex;
+}
+
+.flexColumn{
+	flex-direction: column;
+}
+
+/* Align */
+
+.alignCenter{
+	align-items: center;
+}
+
+.alignLeft{
+	align-items: left;
+}
+
+.alignRight{
+	align-items: right;
+}
+
+/* Justify */
+
+.justifyLeft{
+	justify-content: left;
+}

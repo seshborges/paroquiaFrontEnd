@@ -11,7 +11,7 @@ const BannerContainer = styled.div`
 
   img, video{
     min-width: 100%;
-    height: 100%;
+    min-height: 100%;
     object-fit: cover;
   }
 
@@ -48,7 +48,27 @@ const Banner = (props: any) => {
 
   return(
     <BannerContainer>
-      <Parallax strength={500} style={{ height: '100%', width: '100%' }}>
+      <Parallax 
+        strength={600} 
+        style={{ 
+          height: '100%', 
+          width: '100%',
+        }}
+        renderLayer={percentage => (
+          <div
+            style={{
+              position: 'absolute',
+              top: '0px',
+              left: '0px',
+              width: '100%',
+              height: '100%',
+              zIndex: '1',
+              backdropFilter: `blur(8px)`,
+              opacity: `${percentage}%`
+            }}
+          />
+        )}
+      >
         <Background className={`custom-bg ${filter && 'imgADDFilter'}`}>
           {
             fileType == 'video' ?
