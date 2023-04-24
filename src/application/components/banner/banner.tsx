@@ -18,6 +18,10 @@ const BannerContainer = styled.div`
 
 `
 
+const VideoContainer = styled.div`
+
+`
+
 const Banner = (props: any) => {
   const fileSource = props.source
   const fileType = props.type
@@ -32,11 +36,12 @@ const Banner = (props: any) => {
 
   return(
     <BannerContainer>
-      <Parallax strength={500} style={{ height: '100%', width: '100%' }} ex>
-        <Background className='custom-bg'>
+      { 
+        fileType == 'video' ? 
+          <video autoPlay muted src={fileSource}></video>
+        :
           <img src={fileSource} alt="" />
-        </Background>
-      </Parallax>
+      } 
     </BannerContainer>
   )
 }
