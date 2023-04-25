@@ -14,4 +14,7 @@ export const Content = styled.div`
   margin-top: calc(8*8px);
   width: 1200px;
   max-width: 100%;
+  @media screen and (max-width: 768px) {
+    margin-top: calc(8*4px);
+  }
 `

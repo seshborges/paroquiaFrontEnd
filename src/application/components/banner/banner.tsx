@@ -31,7 +31,7 @@ const BannerContainer = styled.div`
       display: block;
       bottom: 0px;
       background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 100%);
-      opacity: 0.8;
+      opacity: 0.9;
     }
   }
 
@@ -51,6 +51,7 @@ const Banner = (props: any) => {
   const fileType = props.type
   const filter = props.filter
   const gradient = props.gradient
+  const fullSize = props.fullSize
 
   if(!fileSource){
     throw new Error(`Defina um file source ao banner: source={'//'}`)

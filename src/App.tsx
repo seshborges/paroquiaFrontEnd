@@ -49,10 +49,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 600;
 
     transition: .5s;
-    transition-property: opacity;
+    transition-property: opacity, border-color;
 
     :hover{
-      opacity: 0.7;
+      opacity: 0.8;
     }
   }
 
