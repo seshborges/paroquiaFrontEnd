@@ -9,6 +9,18 @@ const VideoFeedBack = styled.div`
   border-radius: 8px;
   /* background-color: rgba(${props=>props.theme.contrast}, 0.1); */
   margin-top: 16px;
+
+  /* @media screen and (max-width: 600px){
+    position: fixed;
+    width: 100%;
+    background-color: rgba(${props=>props.theme.background}, 1);
+    width: 100%;
+    left: 0px;
+    margin-top: -24px;
+    height: 100%;
+    z-index: 10;
+    overflow-y: scroll;
+  } */
 `
 
 const VideoFeedbackContent = styled.div`
@@ -16,6 +28,8 @@ const VideoFeedbackContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 22px;
+  box-sizing: border-box;
+  /* padding: 22px; */
 `
 
 const coment = [
@@ -30,12 +44,29 @@ const coment = [
   }
 ]
 
+
+
 const Feedback = () => {
+  const [data, setData] = useState(coment)
+
+  const reRender = (e: any) => {
+    var pushEffect = {
+      nome: 'Adriano Lima',
+      tempo: 'há 10 dias',
+      conteudo: e
+    }
+
+    coment.push(pushEffect)
+    setData(coment)
+
+    console.log(data)
+  }
+
   return (
     <VideoFeedBack>
       <VideoFeedbackContent>
-        <AddComentario/>
-        <ListarComentarios data={coment}/>
+        <AddComentario render={reRender}/>
+        <ListarComentarios data={data}/>
       </VideoFeedbackContent>
     </VideoFeedBack>
   )

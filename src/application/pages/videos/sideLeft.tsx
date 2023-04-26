@@ -9,6 +9,7 @@ const SideContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  position: relative;
 
   .videoTitle h1{
     font-size: 20px;
@@ -20,7 +21,7 @@ const SideContainer = styled.div`
     padding: 16px;
     border-radius: 8px;
     max-width: 100%;
-    font-weight: 600;
+    font-weight: 500;
     background-color: rgba(${props => props.theme.contrast}, 0.1);
 
     button{
@@ -35,6 +36,7 @@ const SideContainer = styled.div`
     }
 
     p{
+      line-height: 18px;
       display: -webkit-box;
       overflow: hidden;
       -webkit-line-clamp: 3;
@@ -53,9 +55,7 @@ const SideContainer = styled.div`
       }
     }
 
-    :hover{
-      background-color: rgba(${props => props.theme.contrast}, 0.2);
-    }
+    
     /* margin-bottom: 16px; */
   }
 

@@ -16,16 +16,16 @@ const VideoContainer = styled.div`
   max-height: 60vh !important;
 
   ::after{
-    background-color: rgba(${props=>props.theme.default.primary});
+    background: rgba(${props=>props.theme.default.primary}, 1);
     width: 100%;
-    height: 100%;
+    height: 80%;
     position: absolute;
     content: '';
     display: block;
-    opacity: 0.1;
+    opacity: 0.2;
     z-index: -1;
-    border-radius: 100%;
-    filter: blur(100px);
+    border-radius: 50%;
+    filter: blur(200px);
   }
   
 
