@@ -19,6 +19,7 @@ const HeaderContainer = styled.div`
   top: 0;
   background: rgba(${props =>  props.theme.background}, 1);
   color: rgba(${props =>  props.theme.contrast});
+  /* border-bottom: 1px solid red; */
 
   .displayFlex{
     display: flex;
@@ -27,7 +28,7 @@ const HeaderContainer = styled.div`
 
   z-index: 999;
 
-  @media screen and (max-width: 1070px) {
+  @media screen and (max-width: ${props =>  props.theme.default.tabletSize}) {
     .pcElement{
       display: none;
     }
@@ -50,7 +51,7 @@ const HeaderContainer = styled.div`
 
   }
 
-  @media screen and (max-width: 1070px){
+  @media screen and (max-width: ${props =>  props.theme.default.tabletSize}){
     .mobileElement{
       display: block;
     }
@@ -60,12 +61,13 @@ const HeaderContainer = styled.div`
 
 const HeaderContent = styled.div`
   width: 100%;
-  max-width: ${props =>  props.theme.maxWidth};
-  padding: 0px ${props => props.theme.padding};
+  max-width: 1750px;
+  padding: 0px ${props => props.theme.default.padding};
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 1070px) {
+  @media screen and (max-width: ${props =>  props.theme.default.tabletSize}) {
     padding: 0px 8px !important;
   }
 
@@ -81,7 +83,7 @@ const HeaderCenter = styled.div`
 
   .headerLogo{
     width: 64px;
-    display: none;
+    /* display: none; */
     filter: ${props =>  props.theme.name == 'Light' ? 'invert()' : 'none'};
   }
   
@@ -128,7 +130,7 @@ const HeaderMenu = styled.ul`
   height: 100%;
   font-size: 14px;
   font-weight: 600;
-  gap: 40px;
+  gap: 56px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -145,20 +147,19 @@ const HeaderMenu = styled.ul`
 
     margin-left: 32px;
   }
-  @media screen and (max-width: 1070px) {
-    position: fixed;
-    right: 0px;
-    top: 0px;
-    flex-direction: column;
-    gap: 0px;
-    background: rgba(${props => props.theme.background});
-    width: 100vw;
-    z-index: 1;
+
+  @media screen and (max-width: ${props =>  props.theme.default.tabletSize}) {
     display: none;
   }
 
   .open .dropdown{
     visibility: visible;
+  }
+
+  a{
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 `
 
@@ -169,6 +170,12 @@ const Menu = styled.li`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  .mainHref{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
 
   .menu .material-symbols-outlined{
     position: absolute;
@@ -191,15 +198,23 @@ const Menu = styled.li`
     background: rgba(${props =>  props.theme.contrast}, 0.3);
     transition: 0.5s;
     transition-property: width;
+    display: none;
+  }
+
+  .menu{
+    opacity: 0.9;
+    white-space: nowrap;
   }
 
   :hover{
+    .menu{
+      opacity: 1;
+    }
     ::after{
       width: 100%;
     }
 
     opacity: 1;
-    /* color: rgba(${props => props.theme.main}); */
     .dropdownContainer{
       visibility: visible;
       opacity: 1;
@@ -207,7 +222,7 @@ const Menu = styled.li`
     }
   }
 
-  @media screen and (max-width: 1070px) {
+  @media screen and (max-width: ${props =>  props.theme.default.tabletSize}) {
     height: fit-content;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -273,7 +288,7 @@ const HeaderSearch = styled.form`
       color: rgb(${props => props.theme.contrast});
     }
   }
-  @media screen and (max-width: 1070px){
+  @media screen and (max-width: ${props =>  props.theme.default.tabletSize}){
     display: none;
   }
 `
@@ -307,23 +322,21 @@ const Component = (props: any) => {
 
           <HeaderLeft className="displayFlex">
             <button className="mobileElement"><span className="material-symbols-outlined"> search </span></button>
-            <HeaderMenu className={menuHeader ? "displayFlex" : ""}>
+            <HeaderMenu>
               {
                 MenuListL.map((el: any, i: number) => 
-                  <Menu className="displayFlex menuItems open" key={i}>
-                    <div className="displayFlex menu">
-                      {el.title}
-                      {el.dropdown && <span className="material-symbols-outlined"> expand_more </span>}
-                    </div>
-                    {el.dropdown &&
-                      <Dropdown className="dropdown" items={el.dropdown}/>
-                    }
-                  </Menu>
+                    <Menu key={i} className="displayFlex menuItems open">
+                      {el.path && <a className="mainHref" href={el.path}></a> }
+                      <div className="displayFlex menu">
+                          {el.title}
+                          {el.dropdown && <span className="material-symbols-outlined"> expand_more </span>}
+                      </div>
+                      {el.dropdown &&
+                        <Dropdown className="dropdown" items={el.dropdown}/>
+                      }
+                    </Menu>
                 )
               }
-              {/* <Menu className="displayFlex">
-                Início
-              </Menu> */}
             </HeaderMenu>
           </HeaderLeft>
 
@@ -331,7 +344,7 @@ const Component = (props: any) => {
             <a>
               <div title="Paróquia do Divino Pai Eterno" className="logo">
                 <img className="headerLogo" src={logoParoquial} alt="logo paroquial"/>
-                <span className="betaALERT">V 2</span>
+                <span className="betaALERT">B E T A</span>
               </div>
             </a>
           </HeaderCenter>

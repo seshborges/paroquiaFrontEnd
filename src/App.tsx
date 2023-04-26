@@ -8,22 +8,25 @@ import './Global/Global.styles.css'
 // Components
 import Header from './application/components/header/header'
 
+const defaultTheme = {
+  tabletSize: '1024px',
+  mobileSize: '768px',
+  padding: '40px',
+  primary: '0, 80, 191', 
+}
+
 const lightTheme = {
   name: 'Light',
   background: '255, 255, 255',
   contrast: '24, 24, 24',
-  main: '0, 80, 191',
-  maxWidth: '1750px',
-  padding: '40px', 
+  default: defaultTheme
 };
 
 const darkTheme = {
   name: 'Dark',
   background: '24, 24, 24',
-  contrast: '255, 255, 255',
-  main: '0, 80, 191',
-  maxWidth: '1750px',
-  padding: '40px', 
+  contrast: '220, 220, 220',
+  default: defaultTheme
 };
 
 // Create Global Style
@@ -35,6 +38,37 @@ const GlobalStyle = createGlobalStyle`
     background: rgba(${(props: any) => props.theme.background});
     color: rgba(${(props: any) => props.theme.contrast});
   }
+
+  .button-styled01{
+    background: rgba(${props => props.theme.contrast});
+    color: rgba(${props => props.theme.background});
+    border: 1px solid transparent;
+    opacity: 1;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+
+    transition: .5s;
+    transition-property: opacity, border-color;
+
+    :hover{
+      opacity: 0.8;
+    }
+  }
+
+  .button-styled02{
+    padding: 24px 16px 10px 0px;
+    font-weight: 600;
+
+    :hover{
+      text-decoration: underline;
+    }
+  }
+
+  /* *{
+    transition: 0.2s;
+    transition-property: background;
+  } */
 `
 
 // Application
