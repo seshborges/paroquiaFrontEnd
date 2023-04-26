@@ -27,6 +27,11 @@ const SideContainer = styled.div`
       font-weight: 700;
       margin-top: 16px;
       padding-left: 0px;
+      user-select: none;
+
+      :hover{
+        text-decoration: underline;
+      }
     }
 
     p{

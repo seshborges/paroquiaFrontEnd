@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import AddComentario from './comentarios/adicionarComentario'
+import ListarComentarios from './comentarios/listarComentarios'
+
 const VideoFeedBack = styled.div`
   max-width: 100%;
   border-radius: 8px;
@@ -15,165 +18,24 @@ const VideoFeedbackContent = styled.div`
   gap: 22px;
 `
 
-const AddComentario = styled.div`
-  display: flex;
-  width: 100%;
-
-  .userProfileImg{
-    height: 56px;
-    width: 56px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 16px;
-    img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+const coment = [
+  {
+    nome: 'igor lima',
+    tempo: 'há 6 dias',
+    conteudo: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque orci libero, quis pretium mi pulvinar sit amet. Donec fermentum quam ac libero consequat, in egestas lectus mollis. Donec laoreet commodo ultrices. Praesent bibendum quis dolor non auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Sed at sodales ante, eu bibendum risus. Vestibulum posuere varius sapien, non dignissim felis maximus eget. Vivamus molestie molestie orci non sodales. Donec tempus nec enim in mollis.
+    Nulla interdum enim ac mi condimentum dignissim. Pellentesque sed urna vel urna ullamcorper efficitur rhoncus eget risus. Pellentesque ligula risus, consectetur in tortor ut, rutrum rutrum dui. Maecenas ex eros, imperdiet ac facilisis id, ornare ac libero. Suspendisse tristique purus in diam sollicitudin, at efficitur diam ullamcorper. Nunc a augue eget est sodales laoreet tempus sollicitudin ex. Integer purus nisl, ornare a condimentum sed, consequat eget leo. Suspendisse pulvinar iaculis mi eget lacinia. Ut ut nulla ut mauris rutrum blandit. Nunc justo arcu, posuere in pretium et, tristique nec mi. Integer dapibus, arcu sit amet sollicitudin posuere, arcu magna viverra nulla, imperdiet ullamcorper enim ligula a leo. Curabitur vehicula nisl vel sem ullamcorper mollis.
+    Suspendisse sodales congue metus, sit amet rutrum nibh tincidunt at. Sed ut erat odio. Donec luctus lacinia tincidunt. Sed et augue arcu. Duis sodales metus sapien, in tempus ante convallis quis. Nullam semper non neque luctus tincidunt. Cras vitae velit convallis, volutpat nunc sit amet, consectetur mi. Morbi aliquam risus lobortis, feugiat diam non, lacinia urna. Nulla porta nisi quis nisl luctus, quis dapibus urna fermentum. Mauris id mi nec nisl euismod auctor tristique sit amet dui. Nam eleifend lorem congue nibh placerat pharetra.
+    Cras egestas ex ut efficitur volutpat. Suspendisse eros est, semper eu orci sed, laoreet suscipit arcu. Aenean efficitur mattis arcu non tristique. Proin eu nisi sagittis, viverra felis ut, pulvinar justo. Praesent ac metus nec risus placerat pellentesque sed et dui. Nam rhoncus, ligula quis aliquet tincidunt, felis massa viverra ante, non molestie libero nisi et lectus. Aenean ut tempor quam. Etiam mattis, augue vitae iaculis feugiat, ex augue rutrum tellus, sit amet fringilla massa tortor sed lacus. Curabitur feugiat felis non ultricies aliquam.
+    Nunc at urna tellus. Mauris augue augue, suscipit a justo quis, vehicula facilisis ex. Praesent tempor ex tincidunt, mollis nibh et, ornare enim. Sed et diam dolor. Praesent vehicula tristique nisl id fermentum. Curabitur non leo in sapien vulputate pulvinar eu non diam. Nam accumsan tortor eget ipsum molestie, at dapibus ante elementum. Nullam volutpat ante nec maximus rhoncus. Donec mollis sit amet ex sit amet molestie. Aenean imperdiet, libero in sagittis iaculis, turpis orci finibus mauris, quis rhoncus diam nisl nec nibh. Aliquam bibendum iaculis ipsum a placerat. Sed at ornare tortor. Donec eget porta eros. Maecenas lacinia justo at semper condimentum. Ut sit amet justo non metus fermentum euismod in ut felis. Vivamus quis efficitur ligula.`,
   }
-
-  .userCommentSpace {
-    width: 100%;
-    flex: 1;
-
-    textarea{
-      box-sizing: border-box;
-      width: 100%;
-      outline: 0px;
-      border: none;
-      background: transparent;
-      resize: none;
-      color: rgba(${props=>props.theme.contrast}, 1);
-      font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      padding: 16px;
-      background: rgba(${props=>props.theme.contrast}, 0.1);
-      border-radius: 8px;
-    }
-  }
-`
-
-const AreaComentarios = styled.div`
-  font-size: 14px;
-`
-
-const Comentario = styled.div`
-  display: flex;
-  width: 100%;
-  
-  .comentarioLeft{
-    height: 56px;
-    width: 56px;
-    min-width: 56px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 16px;
-    img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .comentarioRight{
-    width: 100%;
-  }
-
-  .comentarioHeader{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    .separador{
-      content: '';
-      width: 5px;
-      height: 5px;
-      background-color: rgba(${props=>props.theme.contrast}, 0.7);
-      border-radius: 50%;
-    }
-  }
-
-  .comentarioTexto{
-    width: 100%;
-    box-sizing: border-box;
-    padding: 16px;
-    background: rgba(${props=>props.theme.contrast}, 0.1);
-    border-radius: 8px;
-    margin-top: 8px;
-
-    span{
-      display: -webkit-box;
-      overflow: hidden;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-    }
-
-    .changeSize{
-      font-weight: 700;
-      margin-top: 16px;
-      padding-left: 0px;
-
-      :hover{
-        text-decoration: underline;
-      }
-    }
-  }
-`
+]
 
 const Feedback = () => {
-  const [val, setVal] = useState("svsd svsdsvsd svsdsvsd svsdsvsd svsd");
-  const textAreaRef = useRef<any>(null);
-
-  const resizeTextArea = () => {
-    textAreaRef.current.style.height = "auto";
-    textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
-  };
-
-  useEffect(resizeTextArea, [val]);
-
-  const onChange = (e: any) => {
-    setVal(e.target.value);
-  };
-
   return (
     <VideoFeedBack>
       <VideoFeedbackContent>
-        <AddComentario>
-          <div className="userProfileImg">
-            <img src="https://i.pinimg.com/564x/f1/07/db/f107db0c0d45872546555f185523b1cb.jpg" alt="" />
-          </div>
-          <div className="userCommentSpace">
-            <textarea placeholder="Adicionar Comentário" ref={textAreaRef} value={val} onChange={onChange} rows={1}/>
-          </div>
-        </AddComentario>
-        <AreaComentarios>
-          <Comentario>
-            <div className="comentarioLeft">
-              <img src="https://i.pinimg.com/564x/f1/07/db/f107db0c0d45872546555f185523b1cb.jpg" alt="" />
-            </div>
-            <div className="comentarioRight">
-              <div className="comentarioHeader">
-                <div className="comentarioUser">
-                  <span>Igor Lima</span>
-                </div>
-                <span className="separador"></span>
-                <div className="comentarioDate">
-                  <span>há 6 dias</span>
-                </div>
-              </div>
-              <div className="comentarioTexto">
-                <span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque orci libero, quis pretium mi pulvinar sit amet. Donec fermentum quam ac libero consequat, in egestas lectus mollis. Donec laoreet commodo ultrices. Praesent bibendum quis dolor non auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Sed at sodales ante, eu bibendum risus. Vestibulum posuere varius sapien, non dignissim felis maximus eget. Vivamus molestie molestie orci non sodales. Donec tempus nec enim in mollis.
-                  Nulla interdum enim ac mi condimentum dignissim. Pellentesque sed urna vel urna ullamcorper efficitur rhoncus eget risus. Pellentesque ligula risus, consectetur in tortor ut, rutrum rutrum dui. Maecenas ex eros, imperdiet ac facilisis id, ornare ac libero. Suspendisse tristique purus in diam sollicitudin, at efficitur diam ullamcorper. Nunc a augue eget est sodales laoreet tempus sollicitudin ex. Integer purus nisl, ornare a condimentum sed, consequat eget leo. Suspendisse pulvinar iaculis mi eget lacinia. Ut ut nulla ut mauris rutrum blandit. Nunc justo arcu, posuere in pretium et, tristique nec mi. Integer dapibus, arcu sit amet sollicitudin posuere, arcu magna viverra nulla, imperdiet ullamcorper enim ligula a leo. Curabitur vehicula nisl vel sem ullamcorper mollis.
-                  Suspendisse sodales congue metus, sit amet rutrum nibh tincidunt at. Sed ut erat odio. Donec luctus lacinia tincidunt. Sed et augue arcu. Duis sodales metus sapien, in tempus ante convallis quis. Nullam semper non neque luctus tincidunt. Cras vitae velit convallis, volutpat nunc sit amet, consectetur mi. Morbi aliquam risus lobortis, feugiat diam non, lacinia urna. Nulla porta nisi quis nisl luctus, quis dapibus urna fermentum. Mauris id mi nec nisl euismod auctor tristique sit amet dui. Nam eleifend lorem congue nibh placerat pharetra.
-                  Cras egestas ex ut efficitur volutpat. Suspendisse eros est, semper eu orci sed, laoreet suscipit arcu. Aenean efficitur mattis arcu non tristique. Proin eu nisi sagittis, viverra felis ut, pulvinar justo. Praesent ac metus nec risus placerat pellentesque sed et dui. Nam rhoncus, ligula quis aliquet tincidunt, felis massa viverra ante, non molestie libero nisi et lectus. Aenean ut tempor quam. Etiam mattis, augue vitae iaculis feugiat, ex augue rutrum tellus, sit amet fringilla massa tortor sed lacus. Curabitur feugiat felis non ultricies aliquam.
-                  Nunc at urna tellus. Mauris augue augue, suscipit a justo quis, vehicula facilisis ex. Praesent tempor ex tincidunt, mollis nibh et, ornare enim. Sed et diam dolor. Praesent vehicula tristique nisl id fermentum. Curabitur non leo in sapien vulputate pulvinar eu non diam. Nam accumsan tortor eget ipsum molestie, at dapibus ante elementum. Nullam volutpat ante nec maximus rhoncus. Donec mollis sit amet ex sit amet molestie. Aenean imperdiet, libero in sagittis iaculis, turpis orci finibus mauris, quis rhoncus diam nisl nec nibh. Aliquam bibendum iaculis ipsum a placerat. Sed at ornare tortor. Donec eget porta eros. Maecenas lacinia justo at semper condimentum. Ut sit amet justo non metus fermentum euismod in ut felis. Vivamus quis efficitur ligula.
-                </span>
-                <button className="changeSize">Mostrar Mais</button>
-              </div>
-            </div>
-          </Comentario>
-        </AreaComentarios>
+        <AddComentario/>
+        <ListarComentarios data={coment}/>
       </VideoFeedbackContent>
     </VideoFeedBack>
   )
