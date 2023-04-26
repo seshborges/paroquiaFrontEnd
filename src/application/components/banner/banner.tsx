@@ -3,13 +3,17 @@ import styled, { css } from "styled-components"
 import { Parallax, Background } from 'react-parallax';
 
 const BannerContainer = styled.div`
+  --tamanho: 55vh;
   width: 100%;
-  height: 55vh;
+  height: var(--tamanho);
   position: relative;
   color: white;
   overflow: hidden;
-  
 
+  @media screen and (max-width: 600px) {
+    --tamanho: 65vh;
+  }
+  
   img, video{
     min-width: 100%;
     min-height: 100%;
@@ -37,7 +41,7 @@ const BannerContainer = styled.div`
 
   .custom-bg{
     width: 100vw;
-    height: 60vh;
+    height: calc(var(--tamanho) + 5vh);
     display: flex;
     align-items: center;
     justify-content: center;

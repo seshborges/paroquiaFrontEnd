@@ -12,7 +12,7 @@ const defaultTheme = {
   tabletSize: '1024px',
   mobileSize: '768px',
   padding: '40px',
-  primary: '0, 80, 191', 
+  primary: '0, 108, 255', 
 }
 
 const lightTheme = {
@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
     border: 1px solid transparent;
     opacity: 1;
     padding: 10px 24px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-weight: 600;
 
     transition: .5s;

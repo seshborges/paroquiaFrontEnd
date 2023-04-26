@@ -4,6 +4,25 @@ import parse from 'html-react-parser';
 const MainCards = styled.div`
   display: flex;
   gap: 40px;
+  margin-top: 80px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    margin-top: 40px;
+
+    .card-left{
+      flex: 0.5 !important;
+    }
+  }
+
+  @media screen and (max-width: 660px) {
+    .card-header{
+      margin-top: 0px !important;
+    }
+    .card-left{
+      flex: 1 !important;
+    }
+  }
 `
 
 const CardContainer = styled.div`
@@ -63,7 +82,8 @@ const CardContainer = styled.div`
       height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      /* justify-content: space-between; */
+      gap: 22px;
     }
 
     .card-content span{
@@ -74,6 +94,10 @@ const CardContainer = styled.div`
       overflow: hidden;
       -webkit-line-clamp: 8;
       -webkit-box-orient: vertical;
+
+      /* @media screen and (max-width: 528px) {
+        -webkit-line-clamp: 3;
+      } */
 
       strong{
         font-weight: 700;
@@ -88,7 +112,7 @@ const CardContainer = styled.div`
 
     .card-actions{
       position: relative;
-      bottom: 28px;
+      /* bottom: 28px; */
     }
   }
 `
