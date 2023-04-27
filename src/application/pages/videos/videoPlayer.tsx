@@ -142,10 +142,6 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     end: false
   })
 
-  useEffect(()=>{
-    playerState.playing ? $videoPlayer.current.play() : $videoPlayer.current.pause()
-  }, [playerState.playing])
-
   function togglePlay(){
     setPlayerState({ 
       ...playerState, 
@@ -167,20 +163,25 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     const inputValue = event.target.value
     $videoPlayer.current.currentTime = $videoPlayer.current.duration / 1000 * inputValue
 
-    if(playerState.end){
-      setPlayerState({
-        ...playerState,
-        percent: inputValue,
-        progressBarValue: inputValue / 10,
-        playing: true
-      })
-    }else{
-      setPlayerState({
-        ...playerState,
-        percent: inputValue,
-        progressBarValue: inputValue / 10,
-      })
-    }
+    setPlayerState({
+      ...playerState,
+      percent: inputValue,
+      progressBarValue: inputValue / 10
+    })
+  }
+
+  function playVideo(){
+    setPlayerState({
+      ...playerState,
+      playing: true
+    })
+  }
+
+  function pauseVideo(){
+    setPlayerState({
+      ...playerState,
+      playing: false
+    })
   }
 
   function setVideoDuration(){
@@ -189,6 +190,10 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
       videoDuration: $videoPlayer.current.duration
     })
   }
+
+  useEffect(()=>{
+    playerState.playing ? $videoPlayer.current.play() : $videoPlayer.current.pause()
+  }, [playerState.playing])
 
   useEffect(()=>{
     var value = ($progressBar.current.value-$progressBar.current.min)/($progressBar.current.max-$progressBar.current.min) * 100
@@ -242,7 +247,9 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     timeUpdate,
     changeVideoTime,
     timeConversion,
-    setVideoDuration
+    setVideoDuration,
+    playVideo,
+    pauseVideo
   }
 }
 
@@ -257,7 +264,9 @@ const Player = (props: any) => {
     timeUpdate,
     changeVideoTime,
     timeConversion,
-    setVideoDuration
+    setVideoDuration,
+    playVideo,
+    pauseVideo
   } = UsePlayer($videoPlayer, $progressBar)
 
   return(
@@ -279,6 +288,8 @@ const Player = (props: any) => {
               min={0} 
               max={1000} 
               onChange={changeVideoTime}
+              onMouseDown={pauseVideo}
+              onMouseUp={playVideo}
               value={playerState.percent}
             />
             <div style={{width: playerState.progressBarValue+'%'}} className="background"></div>
