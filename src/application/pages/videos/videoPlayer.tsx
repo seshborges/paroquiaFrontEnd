@@ -52,7 +52,7 @@ const ControlesTop = styled.div`
   position: relative;
 
   input{
-    -webkit-appearance: none;
+    appearance: none;
     background-color: transparent;
     opacity: 1;
     height: 32px;
@@ -128,6 +128,10 @@ const ControlesBottom = styled.div`
       width: 26px;
     }
   }
+  
+  .mobileHide{
+    display: none;
+  }
 `
 
 // 
@@ -139,8 +143,13 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     progressBarValue: 0,
     videoCurrentTime: 0,
     videoDuration: 0,
-    end: false
+    end: false,
+    videoVolume: 0,
   })
+
+  function setVideoVolume(){
+
+  }
 
   function togglePlay(){
     setPlayerState({ 
@@ -167,20 +176,6 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
       ...playerState,
       percent: inputValue,
       progressBarValue: inputValue / 10
-    })
-  }
-
-  function playVideo(){
-    setPlayerState({
-      ...playerState,
-      playing: true
-    })
-  }
-
-  function pauseVideo(){
-    setPlayerState({
-      ...playerState,
-      playing: false
     })
   }
 
@@ -248,8 +243,6 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     changeVideoTime,
     timeConversion,
     setVideoDuration,
-    playVideo,
-    pauseVideo
   }
 }
 
@@ -265,9 +258,16 @@ const Player = (props: any) => {
     changeVideoTime,
     timeConversion,
     setVideoDuration,
-    playVideo,
-    pauseVideo
   } = UsePlayer($videoPlayer, $progressBar)
+
+  const [touch, setTouch] = useState(false)
+
+  // verificar se o dispositivo é touch
+  useEffect(()=>{
+    if(window.matchMedia("(pointer: coarse)").matches) {
+      setTouch(true)
+    }
+  }, [])
 
   return(
     <PlayerContainer>
@@ -288,8 +288,6 @@ const Player = (props: any) => {
               min={0} 
               max={1000} 
               onChange={changeVideoTime}
-              onMouseDown={pauseVideo}
-              onMouseUp={playVideo}
               value={playerState.percent}
             />
             <div style={{width: playerState.progressBarValue+'%'}} className="background"></div>
@@ -301,7 +299,7 @@ const Player = (props: any) => {
               <button onClick={togglePlay}>
                 <span className="material-symbols-outlined"> {playerState.playing ? 'pause' : 'play_arrow'}</span>
               </button>
-              <button>
+              <button className={touch ? "mobileHide" : ''}>
                 <span className="material-symbols-outlined"> volume_up </span>
               </button>
               <div className="time">
