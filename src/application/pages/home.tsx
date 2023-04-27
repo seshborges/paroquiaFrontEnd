@@ -73,7 +73,7 @@ const Home = () => {
     <>
       <Banner source={fileSource} type={'video'} gradient/>
       <ButtonOverBanner>
-        <button className='button-styled01'>Assistir sobre a história da paróquia</button>
+        <a href='/videos'><button className='button-styled01'>Assistir sobre a história da paróquia</button></a>
       </ButtonOverBanner>
       <Main.Container>
         <Main.Content>

@@ -77,59 +77,98 @@ const Comentario = styled.div`
   }
 `
 
-class MyComponent extends Component<any, any> {
-  constructor(props: any){
-    super(props);
-    this.toggleActiveClass = this.toggleActiveClass.bind(this);
-    this.state = {
-      open: false,
-      yeah: props.data
-    }
+// class MyComponent extends Component<any, any> {
+//   constructor(props: any){
+//     super(props);
+//     this.toggleActiveClass = this.toggleActiveClass.bind(this);
+//     this.state = {
+//       open: false,
+//       yeah: props.data
+//     }
+//   }
+
+//   toggleActiveClass(){
+//     this.setState({
+//       open: !this.state.open
+//     });
+//   }
+
+//   render(): ReactNode {
+//     return(
+//       <Comentario>
+//         <div className="comentarioLeft">
+//           <img src="https://i.pinimg.com/564x/f1/07/db/f107db0c0d45872546555f185523b1cb.jpg" alt="" />
+//         </div>
+//         <div className="comentarioRight">
+//           <div className="comentarioHeader">
+//             <div className="comentarioUser">
+//               <span>{this.state.yeah.nome}</span>
+//             </div>
+//             <span className="separador"></span>
+//             <div className="comentarioDate">
+//               <span>{this.state.yeah.tempo}</span>
+//             </div>
+//           </div>
+//           <div className={this.state.open ? 'open comentarioTexto' : 'comentarioTexto'}>
+//             <span>
+//               {this.state.yeah.conteudo}
+//             </span>
+//             <button onClick={() => this.toggleActiveClass()} className="changeSize">Mostrar Mais</button>
+//           </div>
+//         </div>
+//       </Comentario>
+//     )
+//   }
+// }
+
+const Listagem = (props: any) =>{
+  const [open, setOpen] = useState(false)
+  const data = props.data
+
+  const toggleOpen = () => {
+    setOpen(!open)
   }
 
-  toggleActiveClass(){
-    this.setState({
-      open: !this.state.open
-    });
-  }
-
-  render(): ReactNode {
-    return(
-      <Comentario>
-        <div className="comentarioLeft">
-          <img src="https://i.pinimg.com/564x/f1/07/db/f107db0c0d45872546555f185523b1cb.jpg" alt="" />
-        </div>
-        <div className="comentarioRight">
-          <div className="comentarioHeader">
-            <div className="comentarioUser">
-              <span>{this.state.yeah.nome}</span>
-            </div>
-            <span className="separador"></span>
-            <div className="comentarioDate">
-              <span>{this.state.yeah.tempo}</span>
-            </div>
+  return(
+    <Comentario>
+      <div className="comentarioLeft">
+        <img src="https://i.pinimg.com/564x/f1/07/db/f107db0c0d45872546555f185523b1cb.jpg" alt="" />
+      </div>
+      <div className="comentarioRight">
+        <div className="comentarioHeader">
+          <div className="comentarioUser">
+            <span>{data.nome}</span>
           </div>
-          <div className={this.state.open ? 'open comentarioTexto' : 'comentarioTexto'}>
-            <span>
-              {this.state.yeah.conteudo}
-            </span>
-            <button onClick={() => this.toggleActiveClass()} className="changeSize">Mostrar Mais</button>
+          <span className="separador"></span>
+          <div className="comentarioDate">
+            <span>{data.tempo}</span>
           </div>
         </div>
-      </Comentario>
-    )
-  }
+        <div className={open? 'open comentarioTexto' : 'comentarioTexto'}>
+          <span>
+            {data.conteudo}
+          </span>
+          <button onClick={toggleOpen} className="changeSize">Mostrar Mais</button>
+        </div>
+      </div>
+    </Comentario>
+  )
 }
 
 const Comentarios = (props: any) => {
   const data = props.data
+  const [dataTwo, setData] = useState<any>()
+
+  useEffect(()=>{
+    setData(data)
+  }, [props.data])
 
   return(
     <AreaComentarios>
       {
-        data &&
-        data.map((el: any, i: any)=>
-          <MyComponent data={el} key={i}/>
+        dataTwo &&
+        dataTwo.map((el: any, i: any)=>
+          <Listagem data={el} key={i}/>
         ) 
       }
     </AreaComentarios>

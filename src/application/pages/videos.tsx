@@ -1,38 +1,14 @@
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 
 import * as Main from '../../Global/Main.styles'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import SideLeft from './videos/sideLeft'
 import SideRight from './videos/sideRight'
+import Player from './videos/videoPlayer'
 
 const VideoContainer = styled.div`
   width: 100%;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 16 / 9;
-  max-height: 60vh !important;
-
-  ::after{
-    background: rgba(${props=>props.theme.default.primary}, 1);
-    width: 100%;
-    height: 80%;
-    position: absolute;
-    content: '';
-    display: block;
-    opacity: 0.2;
-    z-index: -1;
-    border-radius: 50%;
-    filter: blur(200px);
-  }
-  
-
-  video{
-    max-width: 100%;
-    height: 100%;
-  }
 `
 
 const Container = styled.div`
@@ -60,10 +36,25 @@ const ContainerContent = styled.div`
 `
 
 const Videos = () => {
+  const [enableAmbience, setEnableAmbience] = useState(false)
+  const themeContext = useContext(ThemeContext)
+
+  const ambience = () => {
+    if(themeContext.name == 'Light'){
+      setEnableAmbience(false)
+    }else{
+      setEnableAmbience(true)
+    }
+  }
+  
+  useEffect(()=>{
+    ambience()
+  }, [themeContext])
+
   return(
     <>
       <VideoContainer>
-        <video autoPlay muted src="//cdn-cf-east.streamable.com/video/mp4/6i21s6.mp4?Expires=1682715840&Signature=LAz2GTrJSSlDoWCqUiZtAiJUCZyH5fuuwskIge9MK6dN79NHz7l7Zpk55lwmaMeTxKMLjpZzeJlfgAs7IeaRTNUTORN1PMp02zXoooLmLl2uTT1tYmg4OYWVf3~6khfC9jX~6jeAcdVbZBUjZMoluMr61p5EIztdjz0Mk0U8YIBmp2rDMSMFvLg2JqDPEwppopXQzxcd2rtaYqjO6O8jXolVmAYvDAYThswrXj4DiG86r-jmNlHEDZBdbOETIeEFOYd5iwAUIRexk~vFWAQNXl2uKClGpuZVIPjKYphkl~vGkp-PFKLPN3l3MSE4j95kjfogk63ZoqJNWJ014BdWQQ__&Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ"></video>
+        <Player url={"//cdn-cf-east.streamable.com/video/mp4/6t0ncx.mp4?Expires=1682877240&Signature=G1am~7toFxZ60udWqmEm9IM2Pkn1vN4EpHke1DhFLbXKHZ5RDSqzkAZNPIgDVD1R947eCgg4PpHcXUIGoUNc56KR8oVGLCioDk~K~wKkp~CJwK8mPjad-IPlZaD6lYTS52JZb0zYV1uzAAqRtpbHQSlDLRvTNlhBdz8qckCcm9gtxOY10-HWlzcBj9-aQyuZJKlOaEMC2tn6msakvoIjP0FBtThubE78euPA9nkXqEsrg~dP3-QqSI~qOela7ynBaBQlkgBF8euoC81-Eqa8rmcnrPu6rACe0oIdXJ3ZdcDDJ4rWl9BKycgjM0VBKqTc6OcnkB1K2pwQc8BeUy29eg__&Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ"}/>
       </VideoContainer>
       <Container>
         <ContainerContent>

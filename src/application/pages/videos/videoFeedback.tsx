@@ -25,7 +25,7 @@ const VideoFeedBack = styled.div`
     }
 
     .text{
-      transition: .2s;
+      transition: 0s;
       transition-property: opacity, position;
       position: absolute;
       opacity: 0;

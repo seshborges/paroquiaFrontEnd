@@ -9,6 +9,7 @@ const VideoFeedBack = styled.div`
   border-radius: 8px;
   /* background-color: rgba(${props=>props.theme.contrast}, 0.1); */
   margin-top: 16px;
+  /* margin-bottom: 200px; */
 
   /* @media screen and (max-width: 600px){
     position: fixed;
@@ -48,6 +49,7 @@ const coment = [
 
 const Feedback = () => {
   const [data, setData] = useState(coment)
+  const [effect, setEffect] = useState(false)
 
   const reRender = (e: any) => {
     var pushEffect = {
@@ -58,15 +60,15 @@ const Feedback = () => {
 
     coment.push(pushEffect)
     setData(coment)
-
-    console.log(data)
+    setEffect(!effect)
   }
+
 
   return (
     <VideoFeedBack>
       <VideoFeedbackContent>
         <AddComentario render={reRender}/>
-        <ListarComentarios data={data}/>
+        <ListarComentarios data={data} />
       </VideoFeedbackContent>
     </VideoFeedBack>
   )

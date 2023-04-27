@@ -38,8 +38,11 @@ const NoticiasContent = styled.div`
     flex: 1;
     width: 100%;
     height: 100%;
-    
     font-size: 20px;
+
+    .news-text{
+      padding: 24px !important;
+    }
   }
 
   .ele{
@@ -80,7 +83,7 @@ const NoticiasContent = styled.div`
       z-index: 3;
       position: absolute;
       bottom: 0px;
-      padding: 32px;
+      padding: 16px;
     }
   }
 `
@@ -104,7 +107,16 @@ const Noticias = (props: any) => {
           </div>
         </div>
         <div className="gridElements">
-          <div className="ele elemento1"></div>
+          <div className="ele elemento1">
+            <div className="news-img">
+              <img src="https://images.a12.com/source/files/c/305206/CORRIDA-MAE-APARECIDA-576128_640-427-0-0.jpg"/>
+            </div>
+            <div className="news-text">
+              <div className="news-text--title">
+                <span>Inscrições para Corrida Mãe Aparecida 2023 começam nesta quinta-feira (20)</span>
+              </div>
+            </div>
+          </div>
           <div className="ele elemento2"></div>
           <div className="ele elemento3"></div>
           <div className="ele elemento4"></div>

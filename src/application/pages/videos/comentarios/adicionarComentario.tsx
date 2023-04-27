@@ -6,6 +6,9 @@ const AddComentario = styled.div`
   width: 100%;
   overflow: hidden;
 
+  /* border-bottom: 1px solid rgba(${props => props.theme.contrast}, 0.2); */
+  /* padding-bottom: 16px; */
+
   .userProfileImg{
     height: 56px;
     width: 56px;

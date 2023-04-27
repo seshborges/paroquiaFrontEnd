@@ -65,6 +65,7 @@ const SideContainer = styled.div`
     gap: 16px;
     user-select: none;
     margin-top: 8px;
+    width: 100%;
 
     .textComentarios{
       font-size: 14px;
@@ -75,6 +76,18 @@ const SideContainer = styled.div`
       cursor: pointer;
       background-color: rgba(${props => props.theme.contrast}, 0.1);
       border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    @media screen and (max-width: 890px) {
+      ::after{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        position: relative;
+        background-color: rgba(${props => props.theme.contrast}, 0.2);
+      }
     }
   }
 `

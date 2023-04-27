@@ -32,6 +32,7 @@ const darkTheme = {
 // Create Global Style
 
 import { createGlobalStyle } from 'styled-components'
+import Footer from './application/components/footer/footer';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -112,6 +113,7 @@ function App() {
       <GlobalStyle/>
       <Header toggleTheme={toggleTheme} />
       <Roteamento/>
+      <Footer/>
     </ThemeProvider>
   )
 }
