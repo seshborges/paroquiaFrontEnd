@@ -122,10 +122,10 @@ const ControlesBottom = styled.div`
     display: flex;
     align-items: center;
     font-size: 12px;
-    gap: 4px;
+    gap: 8px;
     opacity: 0.7;
     .timeCount{
-      width: 24px;
+      width: 26px;
     }
   }
 `
@@ -139,6 +139,7 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     progressBarValue: 0,
     videoCurrentTime: 0,
     videoDuration: 0,
+    end: false
   })
 
   useEffect(()=>{
@@ -166,9 +167,26 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     const inputValue = event.target.value
     $videoPlayer.current.currentTime = $videoPlayer.current.duration / 1000 * inputValue
 
+    if(playerState.end){
+      setPlayerState({
+        ...playerState,
+        percent: inputValue,
+        progressBarValue: inputValue / 10,
+        playing: true
+      })
+    }else{
+      setPlayerState({
+        ...playerState,
+        percent: inputValue,
+        progressBarValue: inputValue / 10,
+      })
+    }
+  }
+
+  function setVideoDuration(){
     setPlayerState({
       ...playerState,
-      percent: inputValue
+      videoDuration: $videoPlayer.current.duration
     })
   }
 
@@ -178,14 +196,16 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
       ...playerState,
       progressBarValue: value
     })
-  }, [playerState.percent])
 
-  useEffect(()=>{
-    setPlayerState({
-      ...playerState,
-      videoDuration: $videoPlayer.current.duration 
-    })
-  }, [$videoPlayer])
+    if(playerState.percent == 1000){
+      setPlayerState({
+        ...playerState,
+        playing: false,
+        end: true
+      })
+    }
+
+  }, [playerState.percent])
 
   // utilizáveis
 
@@ -207,6 +227,12 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
       S = '0' + s;
     }
 
+    if(isNaN(h)){
+      H = ''
+      M = '0:'
+      S = '00'
+    }
+
     return H + M + S;
   }
 
@@ -215,7 +241,8 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     togglePlay,
     timeUpdate,
     changeVideoTime,
-    timeConversion
+    timeConversion,
+    setVideoDuration
   }
 }
 
@@ -229,7 +256,8 @@ const Player = (props: any) => {
     togglePlay,
     timeUpdate,
     changeVideoTime,
-    timeConversion
+    timeConversion,
+    setVideoDuration
   } = UsePlayer($videoPlayer, $progressBar)
 
   return(
@@ -239,6 +267,7 @@ const Player = (props: any) => {
           ref={$videoPlayer}
           src={playerUrl}
           onTimeUpdate={timeUpdate}
+          onLoadedMetadata={setVideoDuration}
         >
         </video>
 
