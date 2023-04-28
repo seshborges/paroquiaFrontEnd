@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import UsePlayer from "./videoPlayerFuncoes";
 
 const PlayerContainer = styled.div`
   width: 100%;
@@ -136,148 +137,43 @@ const ControlesBottom = styled.div`
 
 // 
 
-const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
-  const [playerState, setPlayerState] = useState({
-    playing: false,
-    percent: 0,
-    progressBarValue: 0,
-    videoCurrentTime: 0,
-    videoDuration: 0,
-    end: false,
-    videoVolume: 0,
-  })
-
-  function setVideoVolume(){
-
-  }
-
-  function togglePlay(){
-    setPlayerState({ 
-      ...playerState, 
-      playing: !playerState.playing
-    })
-  }
-
-  function timeUpdate(){
-    const currentPercentage = ($videoPlayer.current.currentTime / $videoPlayer.current.duration) * 1000
-
-    setPlayerState({
-      ...playerState,
-      percent: currentPercentage,
-      videoCurrentTime: $videoPlayer.current.currentTime,
-    })
-  }
-
-  function changeVideoTime(event: any){
-    const inputValue = event.target.value
-    $videoPlayer.current.currentTime = $videoPlayer.current.duration / 1000 * inputValue
-
-    setPlayerState({
-      ...playerState,
-      percent: inputValue,
-      progressBarValue: inputValue / 10
-    })
-  }
-
-  function setVideoDuration(){
-    setPlayerState({
-      ...playerState,
-      videoDuration: $videoPlayer.current.duration
-    })
-  }
-
-  useEffect(()=>{
-    playerState.playing ? $videoPlayer.current.play() : $videoPlayer.current.pause()
-  }, [playerState.playing])
-
-  useEffect(()=>{
-    var value = ($progressBar.current.value-$progressBar.current.min)/($progressBar.current.max-$progressBar.current.min) * 100
-    setPlayerState({
-      ...playerState,
-      progressBarValue: value
-    })
-
-    if(playerState.percent == 1000){
-      setPlayerState({
-        ...playerState,
-        playing: false,
-        end: true
-      })
-    }
-
-  }, [playerState.percent])
-
-  // utilizáveis
-
-  function timeConversion(d: any) {
-    d = Number(d);
-    var h = Math.floor(d / 3600);
-    var m = Math.floor((d % 3600) / 60);
-    var s = Math.floor((d % 3600) % 60);
-
-    var H = h + ":";
-    var M = m + ":";
-    var S = s + '';
-
-    if(h < 10) {
-      H = '';
-    }
-
-    if(s < 10) {
-      S = '0' + s;
-    }
-
-    if(isNaN(h)){
-      H = ''
-      M = '0:'
-      S = '00'
-    }
-
-    return H + M + S;
-  }
-
-  return {
-    playerState,
-    togglePlay,
-    timeUpdate,
-    changeVideoTime,
-    timeConversion,
-    setVideoDuration,
-  }
-}
 
 const Player = (props: any) => {
   const playerUrl = props.url
 
   const $videoPlayer = useRef(null)
   const $progressBar = useRef(null)
+
   const {
     playerState,
     togglePlay,
     timeUpdate,
-    changeVideoTime,
     timeConversion,
     setVideoDuration,
+    changeProgressBar
   } = UsePlayer($videoPlayer, $progressBar)
 
+  
+  // verificar se o dispositivo é touch
   const [touch, setTouch] = useState(false)
 
-  // verificar se o dispositivo é touch
   useEffect(()=>{
     if(window.matchMedia("(pointer: coarse)").matches) {
       setTouch(true)
     }
   }, [])
 
+  //
+
   return(
     <PlayerContainer>
       <div className="video">
         <video 
           ref={$videoPlayer}
-          src={playerUrl}
           onTimeUpdate={timeUpdate}
           onLoadedMetadata={setVideoDuration}
         >
+          <source src={playerUrl} type="video/mp4"></source>
         </video>
 
         <Controles>
@@ -287,10 +183,10 @@ const Player = (props: any) => {
               type="range" 
               min={0} 
               max={1000} 
-              onChange={changeVideoTime}
-              value={playerState.percent}
+              onChange={changeProgressBar}
+              value={playerState.percent*10}
             />
-            <div style={{width: playerState.progressBarValue+'%'}} className="background"></div>
+            <div style={{width: playerState.percent+'%'}} className="background"></div>
             <div className="background2"></div>
           </ControlesTop>
 
