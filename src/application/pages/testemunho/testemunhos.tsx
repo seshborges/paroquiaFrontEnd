@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import * as Main from '../../Global/Main.styles'
-import Card from '../components/card/card'
-import Banner from '../components/banner/banner'
+import * as Main from '../../../Global/Main.styles'
+import Card from '../../components/card/card'
+import Banner from '../../components/banner/banner'
 
 const BannerContainer = styled.div`
   width: 100%;

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import AddComentario from './comentarios/adicionarComentario'
-import ListarComentarios from './comentarios/listarComentarios'
+import AddComentario from './adicionarComentario'
+import ListarComentarios from './listarComentarios'
 
 const VideoFeedBack = styled.div`
   max-width: 100%;

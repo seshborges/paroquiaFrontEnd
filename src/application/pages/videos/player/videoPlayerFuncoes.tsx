@@ -13,6 +13,7 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     videoCurrentTime: 0,
     videoDuration: 0,
     videoVolume: 0.2,
+    percentLoaded: 0
   })
 
 
@@ -74,13 +75,34 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
         ...playerState,
         percent: currentPercentage,
         videoCurrentTime: $videoPlayer.current.currentTime,
+        // percentLoaded: loadedPercentage
       })
     }
+
+    function setLoadedData(){
+      let v = $videoPlayer.current
+      var range = 0;
+      var bf = v.buffered;
+      var time = v.currentTime;
+
+      console.log(time)
+
+      while(!(bf.start(range) <= time && time <= bf.end(range))) {
+          range += 1;
+      }
+
+      var loadStartPercentage = bf.start(range) / v.duration;
+      var loadEndPercentage = bf.end(range) / v.duration;
+      var loadPercentage = loadEndPercentage - loadStartPercentage;
+
+      console.log(loadPercentage)
+    }
+    
 
   // Definir o tempo do vídeo em tempo (segundos)
     function changeVideoTimeSeconds(time: any){
       if(time >= $videoPlayer.current.duration + 1){
-        return console.log('oxe')
+        return
       }
       $videoPlayer.current.currentTime = time
     }
@@ -94,8 +116,6 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     function changeProgressBar(event: any){
       const inputValue = event.target.value
       changeVideoTimePercentage(inputValue/10)
-
-      console.log(inputValue)
 
       setPlayerState({
         ...playerState,
@@ -156,7 +176,8 @@ const UsePlayer = ($videoPlayer: any, $progressBar: any) => {
     timeUpdate,
     timeConversion,
     setVideoDuration,
-    changeProgressBar
+    changeProgressBar,
+    setLoadedData
   }
 }
 

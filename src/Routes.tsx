@@ -1,8 +1,8 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Testemunhos from './application/pages/testemunhos'
-import Home from './application/pages/home'
-import Videos from './application/pages/videos';
+import Testemunhos from './application/pages/testemunho/testemunhos'
+import Home from './application/pages/home/home'
+import Videos from './application/pages/videos/videos';
 
 const Rotas = () => {
   return(

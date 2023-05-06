@@ -145,8 +145,29 @@ const FooterContainer = styled.footer`
         background: rgba(255, 255, 255, 0.2);
         border-radius: 8px;
         opacity: 0.7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        .new-tab{
+          font-size: 12px;
+          position: absolute;
+          /* right: 8px; */
+          opacity: 0;
+          transition: .2s;
+          margin-left: 0px;
+          transition-property: opacity, margin;
+        }
+
         :hover{
           opacity: 1;
+          width: auto;
+          .new-tab{
+            position: relative;
+            margin-left: 8px;
+            opacity: 1;
+          }
         }
       }
 
@@ -191,15 +212,24 @@ const Footer = () => {
       <div className="footerBottom">
         <div className="left">
           <div className="socialMedia">
-            <button>
-              <img src="https://cdn.discordapp.com/attachments/1004462680582668341/1100936034121949254/youtube_1.png" alt='Youtube'/>
-            </button>
-            <button>
-              <img src="https://cdn.discordapp.com/attachments/1004462680582668341/1100936034461696072/social-038_instagram.png" alt='Instagram'/>
-            </button>
-            <button>
-              <img src="https://cdn.discordapp.com/attachments/1004462680582668341/1100936033698316418/social-006_facebook.png" alt='Facebook'/>
-            </button>
+            <a target='_blank' href='https://www.youtube.com/@ParoquiaDivinoPaiEterno'>
+              <button>
+                <img src="https://cdn.discordapp.com/attachments/1004462680582668341/1100936034121949254/youtube_1.png" alt='Youtube'/>
+                <span className="material-symbols-outlined new-tab">open_in_new</span>
+              </button>
+            </a>
+            <a target='_blank' href='https://www.youtube.com/@ParoquiaDivinoPaiEterno'>  
+              <button>
+                <img src="https://cdn.discordapp.com/attachments/1004462680582668341/1100936034461696072/social-038_instagram.png" alt='Instagram'/>
+                <span className="material-symbols-outlined new-tab">open_in_new</span>
+              </button>
+            </a>
+            <a target='_blank' href='https://www.youtube.com/@ParoquiaDivinoPaiEterno'>
+              <button>
+                <img src="https://cdn.discordapp.com/attachments/1004462680582668341/1100936033698316418/social-006_facebook.png" alt='Facebook'/>
+                <span className="material-symbols-outlined new-tab">open_in_new</span>
+              </button>
+            </a>
           </div>
           <div className="direitos">
             <span>Paróquia Divino Pai Eterno</span>

@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Preview from './previewCard'
-
+import Preview from '../previewCard'
 
 const SideContainer = styled.div`
   box-sizing: border-box;

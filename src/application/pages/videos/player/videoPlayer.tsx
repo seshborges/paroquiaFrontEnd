@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import UsePlayer from "./videoPlayerFuncoes";
+// import UsePlayer from "./videoPlayerFuncoes";
 
 const PlayerContainer = styled.div`
   width: 100%;
@@ -42,7 +42,8 @@ const Controles = styled.div`
   box-sizing: border-box;
   padding: 1vw;
   color: white;
-`
+  display: none;
+  `
 
 const ControlesTop = styled.div`
   width: 100%;
@@ -73,14 +74,15 @@ const ControlesTop = styled.div`
       height: 0px;
       user-select: none;
       border-radius: 50%;
-
+      background-color: white;
       transition: .1s;
     }
   }
 
   .background{
     height: 3px;
-    background-color: rgba(${props=>props.theme.default.primary});
+    /* background-color: rgba(${props=>props.theme.default.primary}); */
+    background-color: white;
     position: absolute;
     left: 0;
     z-index: 3;
@@ -94,8 +96,15 @@ const ControlesTop = styled.div`
     z-index: 1;
   }
 
+  .background3{
+    position: absolute;
+    height: 3px;
+    background-color: rgba(255, 0, 0, 1);
+    z-index: 1;
+  }
+
   :hover{
-    .background, .background2{
+    .background, .background2, .background3{
       height: 5px;
     }
 
@@ -140,18 +149,20 @@ const ControlesBottom = styled.div`
 
 const Player = (props: any) => {
   const playerUrl = props.url
+  const playerInfos = props.infos
 
   const $videoPlayer = useRef(null)
   const $progressBar = useRef(null)
 
-  const {
-    playerState,
-    togglePlay,
-    timeUpdate,
-    timeConversion,
-    setVideoDuration,
-    changeProgressBar
-  } = UsePlayer($videoPlayer, $progressBar)
+  // const {
+  //   playerState,
+  //   togglePlay,
+  //   timeUpdate,
+  //   timeConversion,
+  //   setVideoDuration,
+  //   changeProgressBar,
+  //   setLoadedData
+  // } = UsePlayer($videoPlayer, $progressBar)
 
   
   // verificar se o dispositivo é touch
@@ -168,15 +179,20 @@ const Player = (props: any) => {
   return(
     <PlayerContainer>
       <div className="video">
-        <video 
-          ref={$videoPlayer}
-          onTimeUpdate={timeUpdate}
-          onLoadedMetadata={setVideoDuration}
-        >
-          <source src={playerUrl} type="video/mp4"></source>
-        </video>
+          <video 
+            // ref={$videoPlayer}
+            // onTimeUpdate={timeUpdate}
+            // onLoadedMetadata={setVideoDuration}
+            controlsList="nodownload"
+            // onProgress={setLoadedData}
+            controls={true}
+            autoPlay={true}
+            poster={playerInfos.thumbnail}
+          >
+            <source src={playerUrl} type="video/mp4"></source>
+          </video>
 
-        <Controles>
+        {/* <Controles>
           <ControlesTop>
             <input 
               ref={$progressBar}
@@ -188,6 +204,7 @@ const Player = (props: any) => {
             />
             <div style={{width: playerState.percent+'%'}} className="background"></div>
             <div className="background2"></div>
+            <div style={{width: playerState.percentLoaded+'%'}} className="background3"></div>
           </ControlesTop>
 
           <ControlesBottom>
@@ -205,7 +222,7 @@ const Player = (props: any) => {
               </div>
             </div>
           </ControlesBottom>
-        </Controles>
+        </Controles> */}
 
       </div>
     </PlayerContainer>

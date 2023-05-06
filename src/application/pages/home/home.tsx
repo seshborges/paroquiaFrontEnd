@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-import Banner from '../components/banner/banner'
-import * as Main from '../../Global/Main.styles'
+import Banner from '../../components/banner/banner'
+import * as Main from '../../../Global/Main.styles'
 import { useEffect, useState } from 'react'
 
-import Card from './home/card'
-import News from './home/news'
+import Card from './card'
+import News from './news'
 
 const MarginElem = styled.div`
   height: 5000px;
@@ -64,8 +64,8 @@ const Container1 = styled.div`
 `
 
 const Home = () => {
-  var fileSource = `https://i.pinimg.com/originals/71/9e/80/719e80760999b4c355a723224120eb07.png`
-  fileSource = `//cdn-cf-east.streamable.com/video/mp4/6i21s6.mp4?Expires=1682715840&Signature=LAz2GTrJSSlDoWCqUiZtAiJUCZyH5fuuwskIge9MK6dN79NHz7l7Zpk55lwmaMeTxKMLjpZzeJlfgAs7IeaRTNUTORN1PMp02zXoooLmLl2uTT1tYmg4OYWVf3~6khfC9jX~6jeAcdVbZBUjZMoluMr61p5EIztdjz0Mk0U8YIBmp2rDMSMFvLg2JqDPEwppopXQzxcd2rtaYqjO6O8jXolVmAYvDAYThswrXj4DiG86r-jmNlHEDZBdbOETIeEFOYd5iwAUIRexk~vFWAQNXl2uKClGpuZVIPjKYphkl~vGkp-PFKLPN3l3MSE4j95kjfogk63ZoqJNWJ014BdWQQ__&Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ`
+  // var fileSource = `https://i.pinimg.com/originals/71/9e/80/719e80760999b4c355a723224120eb07.png`
+  let fileSource = `http://localhost:3423/assistir?q=4`
 
   const [data, setData] = useState()
 
@@ -73,7 +73,7 @@ const Home = () => {
     <>
       <Banner source={fileSource} type={'video'} gradient/>
       <ButtonOverBanner>
-        <a href='/videos'><button className='button-styled01'>Assistir sobre a história da paróquia</button></a>
+        <a href='/videos?q=2'><button className='button-styled01'>Assistir sobre a história da paróquia</button></a>
       </ButtonOverBanner>
       <Main.Container>
         <Main.Content>

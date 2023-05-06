@@ -28,7 +28,7 @@ const DropdownContainer = styled.div`
 
 const DropdownContent = styled.ul`
   @media screen and (min-width: ${props =>  props.theme.default.tabletSize}) {
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(${props => props.theme.contrast}, 0.2);
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.2);
