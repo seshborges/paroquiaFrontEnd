@@ -19,7 +19,7 @@ const Container = styled.div`
 `
 
 const ContainerContent = styled.div`
-  width: 1700px;
+  width: 1670px;
   margin-top: 24px;
   display: flex;
   gap: 20px;

@@ -302,6 +302,25 @@ const HeaderOptions = styled.div`
   }
 `
 
+const TopHeader = styled.div`
+  position: sticky;
+  width: 100%;
+  height: 24px;
+  background-color: #050505;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+
+  display: none;
+
+  span{
+    opacity: 0.5;
+  }
+`
+
 // 
 
 const Component = (props: any) => {
@@ -317,6 +336,9 @@ const Component = (props: any) => {
   const themeContext = useContext(ThemeContext)
   return(
     <>
+      <TopHeader>
+        <span>Map</span>
+      </TopHeader>
       <HeaderContainer>
         <HeaderContent>
 
@@ -344,7 +366,7 @@ const Component = (props: any) => {
             <a>
               <div title="Paróquia do Divino Pai Eterno" className="logo">
                 <img className="headerLogo" src={logoParoquial} alt="logo paroquial"/>
-                <span className="betaALERT">B E T A</span>
+                {/* <span className="betaALERT">B E T A</span> */}
               </div>
             </a>
           </HeaderCenter>
@@ -353,8 +375,8 @@ const Component = (props: any) => {
 
             <button onClick={toggleMenu} className="mobileElement"><span className="material-symbols-outlined"> menu </span></button>
 
-            <HeaderSearch className="displayFlex pcElement"> 
-              <input type="text" placeholder="Pesquisar" />
+            <HeaderSearch className="displayFlex pcElement" action="/pesquisa"> 
+              <input name="q" type="text" placeholder="Pesquisar" />
               <button><span className="material-symbols-outlined"> search </span></button>
             </HeaderSearch>
 

@@ -70,7 +70,7 @@ const Banner = (props: any) => {
   return(
     <BannerContainer>
       <Parallax 
-        strength={400} 
+        strength={600} 
         style={{ 
           height: '100%', 
           width: '100%',

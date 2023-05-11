@@ -1,3 +1,4 @@
+import axios from 'axios'
 import styled from 'styled-components'
 
 const NoticiasContainer = styled.div`
@@ -91,6 +92,8 @@ const NoticiasContent = styled.div`
 const Noticias = (props: any) => {
   const data = props.data
 
+  axios.get("")
+
   return(
     <NoticiasContainer>
       <NoticiasContent>
@@ -107,7 +110,7 @@ const Noticias = (props: any) => {
           </div>
         </div>
         <div className="gridElements">
-          <div className="ele elemento1">
+          <div className="ele">
             <div className="news-img">
               <img src="https://images.a12.com/source/files/c/305206/CORRIDA-MAE-APARECIDA-576128_640-427-0-0.jpg"/>
             </div>
@@ -117,9 +120,9 @@ const Noticias = (props: any) => {
               </div>
             </div>
           </div>
-          <div className="ele elemento2"></div>
-          <div className="ele elemento3"></div>
-          <div className="ele elemento4"></div>
+          <div className="ele"></div>
+          <div className="ele"></div>
+          <div className="ele"></div>
         </div>
       </NoticiasContent>
     </NoticiasContainer>

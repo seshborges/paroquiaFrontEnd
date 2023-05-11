@@ -64,14 +64,14 @@ const Container1 = styled.div`
 `
 
 const Home = () => {
-  // var fileSource = `https://i.pinimg.com/originals/71/9e/80/719e80760999b4c355a723224120eb07.png`
-  let fileSource = `http://localhost:3423/assistir?q=4`
+  var fileSource = `https://www.arquidiocesedegoiania.org.br/uploads/matriz-de-trindade-e-reaberta-apos-longa-reforma-053231286.jpg`
+  // let fileSource = `http://localhost:3423/assistir?q=4`
 
   const [data, setData] = useState()
 
   return(
     <>
-      <Banner source={fileSource} type={'video'} gradient/>
+      <Banner source={fileSource} type={'img'} gradient/>
       <ButtonOverBanner>
         <a href='/videos?q=2'><button className='button-styled01'>Assistir sobre a história da paróquia</button></a>
       </ButtonOverBanner>
