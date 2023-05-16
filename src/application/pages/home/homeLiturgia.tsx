@@ -117,9 +117,30 @@ const CardContainer = styled.div`
   }
 `
 
-const Card = (props: any) => {
-  const cards = props.cards
+const cards = [
+  {
+    header: 'Santo do Dia',
+    titulo: 'São Porfírio, o restaurador da fé de um povo',
+    content: 'São Porfírio era um tecelão, de família rica, nascido na Grécia. Aos 25 anos, decidiu viver de modo austero, dedicando-se à solidão e à penitência na região do Rio Jordão. Por causa de sua escolha, contraiu uma doença que o obrigou a mudar-se para Jerusalém, tornando-se mais moderado em sua austeridade. Mesmo doente, conta-se que ele não demonstrava sua realidade e se dedicava a visitar os lugares santos diariamente.',
+    button: 'Leia Mais',
+    // button2: 'Liturgia Diária',
+    img: 'https://i.pinimg.com/564x/e5/9e/f7/e59ef77b3874151ebe4bf738da40f78c.jpg'
+  },
+  {
+    header: 'Santo do Dia',
+    titulo: 'São Porfírio, o restaurador da fé de um povo',
+    content: `
+      <strong>Primeira Leitura</strong>
+      <br/>
+      <sub>Teste</sub>
+      <br/><br/>
+      <strong>Salmo</strong>
+    `,
+    img: 'https://i.pinimg.com/564x/b8/82/aa/b882aae85de06d5c3593382b7fb57fd2.jpg'
+  }
+]
 
+const Card = () => {
   return (
     <>
       <MainCards>

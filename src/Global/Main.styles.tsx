@@ -18,3 +18,8 @@ export const Content = styled.div`
     margin-top: calc(8*4px);
   }
 `
+
+export const MarginElem = styled.div`
+  min-height: 100vh;
+  width: 100%;
+`

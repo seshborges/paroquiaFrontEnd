@@ -64,18 +64,30 @@ const Pesquisa = () => {
       <ContainerContent>
         <PesquisaContainer>
           <PesquisaContent>
-            {
-              usuarios.length > 0 && 
-              <span>Usuarios</span>
-            }
-            {
-              noticias.length > 0 && 
-              <span>Notícias</span>
-            }
-            {
-              videos.length > 0 && 
-              <span>Vídeos</span>
-            }
+            <div className="usuarios">
+              {
+                usuarios.length > 0 && 
+                <span>Usuarios</span>
+              }
+              {
+                usuarios.length > 0 && 
+                usuarios.map((el: any) =>
+                  <span>{el.id}</span>
+                )
+              }
+            </div>
+            <div className="noticias">
+              {
+                noticias.length > 0 && 
+                <span>Notícias</span>
+              }
+              {
+                noticias.length > 0 && 
+                noticias.map((el: any) =>
+                  <span>{el.id}</span>
+                )
+              }
+            </div>
           </PesquisaContent>
         </PesquisaContainer>
       </ContainerContent>

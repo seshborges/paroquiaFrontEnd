@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components';
-import Roteamento from './Routes'
 
 import './Global/Normalize.styles.css'
 import './Global/Global.styles.css'
@@ -65,14 +64,10 @@ const GlobalStyle = createGlobalStyle`
       text-decoration: underline;
     }
   }
-
-  /* *{
-    transition: 0.2s;
-    transition-property: background;
-  } */
 `
 
 // Application
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [isDarkTheme, setDarkTheme] = useState(false)
@@ -112,7 +107,7 @@ function App() {
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <GlobalStyle/>
       <Header toggleTheme={toggleTheme} />
-      <Roteamento/>
+      <Outlet/>
       <Footer/>
     </ThemeProvider>
   )
